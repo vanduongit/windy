@@ -10,6 +10,6 @@ public interface IDomainRepository<T extends IDomain> {
     T getById(String id);
     void create(T item);
     void update(T item);
-    void delete(T item);
+    void delete(String uuid);
 
 }

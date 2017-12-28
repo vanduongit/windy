@@ -10,7 +10,10 @@ GET     /count                      controllers.CountController.count
 GET     /message                    controllers.AsyncController.message
 
 GET     /api/windy/books            controllers.BookController.getAll
+GET     /api/windy/books/:uuid      controllers.BookController.get(uuid)
 POST    /api/windy/books            controllers.BookController.create
+PUT     /api/windy/books            controllers.BookController.update
+DELETE  /api/windy/books/:uuid      controllers.BookController.delete(uuid)
 
 GET     /api/windy/magazines         controllers.MagazineController.getAll
 POST    /api/windy/magazines         controllers.MagazineController.create
