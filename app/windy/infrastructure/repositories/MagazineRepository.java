@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 
 @Singleton
-public class MagazineRepository extends BaseRepository{
+public class MagazineRepository extends BaseRepository<Magazine>{
 
 
     public MagazineRepository() {

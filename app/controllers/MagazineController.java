@@ -6,7 +6,11 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import windy.framework.core.ICommandBus;
 import windy.framework.infrastructure.messaging.CommandBus;
+
 import windy.infrastructure.contracts.commands.magazine.CreateMagazineCommand;
+
+import windy.infrastructure.contracts.commands.magazine.DeleteMagazineCommand;
+import windy.infrastructure.contracts.commands.magazine.UpdateMagazineCommand;
 import windy.infrastructure.domains.Magazine;
 import windy.infrastructure.repositories.MagazineRepository;
 
@@ -35,6 +39,28 @@ public class MagazineController extends Controller{
     public Result getAll(){
         ApiResult apiResult = new ApiResult();
         apiResult.setData(magazineRepository.getAll());
+        return ok(Json.toJson(magazineRepository.getAll()));
+    }
+
+    public Result get(String uuid){
+        Magazine magazine = magazineRepository.getById(uuid);
+        ApiResult apiResult = new ApiResult();
+        apiResult.setData(magazine);
+        return ok(Json.toJson(apiResult));
+    }
+
+    public Result update(){
+        Magazine magazine = Json.fromJson(request().body().asJson(),Magazine.class);
+        ApiResult apiResult = new ApiResult();
+        UpdateMagazineCommand updateMagazineCommand = new UpdateMagazineCommand(magazine);
+        commandBus.send(updateMagazineCommand,UpdateMagazineCommand.class);
+        return ok(Json.toJson(apiResult));
+    }
+
+    public Result delete(String uuid){
+        ApiResult apiResult = new ApiResult();
+        DeleteMagazineCommand deleteMagazineCommand = new DeleteMagazineCommand(uuid);
+        commandBus.send(deleteMagazineCommand,DeleteMagazineCommand.class);
         return ok(Json.toJson(apiResult));
     }
 
