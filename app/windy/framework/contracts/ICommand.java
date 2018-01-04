@@ -1,7 +1,16 @@
 package windy.framework.contracts;
 
 
-public interface ICommand{
+public abstract class ICommand{
 
-    void execute();
+    private String uuid;
+
+    public ICommand(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
 }

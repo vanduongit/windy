@@ -1,5 +1,6 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import controllers.result.ApiResult;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -26,11 +27,9 @@ public class BookController extends Controller{
 
     public Result create(){
 
-        Book book = Json.fromJson(request().body().asJson(),Book.class);
-        book.setPublishedDate(System.currentTimeMillis());
-        book.setCreatedAt(System.currentTimeMillis());
-        CreateBookCommand createBookCommand = new CreateBookCommand(book);
-        commandBus.send(createBookCommand,CreateBookCommand.class);
+        JsonNode body = request().body().asJson();
+        CreateBookCommand createBookCommand = new CreateBookCommand(body.get("uuid").asText(),body.get("title").asText(),body.get("author").asText());
+        commandBus.send(createBookCommand);
 
         ApiResult apiResult = new ApiResult();
         return ok(Json.toJson(apiResult));
@@ -50,17 +49,23 @@ public class BookController extends Controller{
     }
 
     public Result update(){
-        Book book = Json.fromJson(request().body().asJson(),Book.class);
+        JsonNode body = request().body().asJson();
         ApiResult apiResult = new ApiResult();
-        UpdateBookCommand updateBookCommand = new UpdateBookCommand(book);
-        commandBus.send(updateBookCommand,UpdateBookCommand.class);
+        UpdateBookCommand updateBookCommand = new UpdateBookCommand(body.get("uuid").asText(),
+                body.get("title").asText(),
+                body.get("author").asText(),
+                body.get("publishedDate").asLong(),
+                body.get("createdAt").asLong(),
+                body.get("active").asBoolean(),
+                body.get("count").asInt());
+        commandBus.send(updateBookCommand);
         return ok(Json.toJson(apiResult));
     }
 
     public Result delete(String uuid){
         ApiResult apiResult = new ApiResult();
         DeleteBookCommand deleteBookCommand = new DeleteBookCommand(uuid);
-        commandBus.send(deleteBookCommand,DeleteBookCommand.class);
+        commandBus.send(deleteBookCommand);
         return ok(Json.toJson(apiResult));
     }
 

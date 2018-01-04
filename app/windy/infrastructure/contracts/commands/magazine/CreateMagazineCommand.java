@@ -7,12 +7,8 @@ public class CreateMagazineCommand extends MagazineCommand{
 
     private Magazine magazine;
 
-    public CreateMagazineCommand(Magazine magazine){
-        this.magazine = magazine;
-    }
 
-    @Override
-    public void execute() {
-        this.magazineRepository.create(magazine);
+    public CreateMagazineCommand(String uuid) {
+        super(uuid);
     }
 }

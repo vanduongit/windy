@@ -18,7 +18,6 @@ public class MagazineCommandHandler<T extends MagazineCommand> implements IComma
 
     @Override
     public void handle(T command) {
-        command.setMagazineRepository(magazineRepository);
-        command.execute();
+
     }
 }

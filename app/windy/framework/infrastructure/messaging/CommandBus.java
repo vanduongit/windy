@@ -20,9 +20,9 @@ public class CommandBus implements ICommandBus{
     }
 
     @Override
-    public <T extends ICommand> void send(T command, Class<T> clazz){
+    public <T extends ICommand> void send(T command){
 
-        commandHandlerFactory.createCommandHandler(clazz).handle(command);
+        commandHandlerFactory.createCommandHandler(command).handle(command);
     }
 
 

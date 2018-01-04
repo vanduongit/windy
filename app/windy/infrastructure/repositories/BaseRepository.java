@@ -2,14 +2,12 @@ package windy.infrastructure.repositories;
 
 import windy.framework.contracts.IDomain;
 import windy.framework.repository.IDomainRepository;
-import windy.infrastructure.domains.Domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-public class BaseRepository<T extends Domain> implements IDomainRepository<T>{
+public class BaseRepository<T extends IDomain> implements IDomainRepository<T>{
 
     Class<T> clazz;
     protected List<T> list;

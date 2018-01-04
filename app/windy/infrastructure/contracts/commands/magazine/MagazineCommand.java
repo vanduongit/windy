@@ -1,13 +1,11 @@
 package windy.infrastructure.contracts.commands.magazine;
 
-import windy.infrastructure.contracts.commands.Command;
-import windy.infrastructure.repositories.MagazineRepository;
+import windy.framework.contracts.ICommand;
 
-public class MagazineCommand extends Command{
+public class MagazineCommand extends ICommand{
 
-    protected MagazineRepository magazineRepository;
 
-    public void setMagazineRepository(MagazineRepository magazineRepository) {
-        this.magazineRepository = magazineRepository;
+    public MagazineCommand(String uuid) {
+        super(uuid);
     }
 }

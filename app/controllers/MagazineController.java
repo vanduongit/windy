@@ -30,8 +30,8 @@ public class MagazineController extends Controller{
     public Result create(){
 
         Magazine Magazine = Json.fromJson(request().body().asJson(),Magazine.class);
-        CreateMagazineCommand createMagazineCommand = new CreateMagazineCommand(Magazine);
-        commandBus.send(createMagazineCommand,CreateMagazineCommand.class);
+        //CreateMagazineCommand createMagazineCommand = new CreateMagazineCommand(Magazine);
+        //commandBus.send(createMagazineCommand,CreateMagazineCommand.class);
         ApiResult apiResult = new ApiResult();
         return ok(Json.toJson(apiResult));
     }
@@ -52,15 +52,15 @@ public class MagazineController extends Controller{
     public Result update(){
         Magazine magazine = Json.fromJson(request().body().asJson(),Magazine.class);
         ApiResult apiResult = new ApiResult();
-        UpdateMagazineCommand updateMagazineCommand = new UpdateMagazineCommand(magazine);
-        commandBus.send(updateMagazineCommand,UpdateMagazineCommand.class);
+        //UpdateMagazineCommand updateMagazineCommand = new UpdateMagazineCommand(magazine);
+        //commandBus.send(updateMagazineCommand,UpdateMagazineCommand.class);
         return ok(Json.toJson(apiResult));
     }
 
     public Result delete(String uuid){
         ApiResult apiResult = new ApiResult();
         DeleteMagazineCommand deleteMagazineCommand = new DeleteMagazineCommand(uuid);
-        commandBus.send(deleteMagazineCommand,DeleteMagazineCommand.class);
+        commandBus.send(deleteMagazineCommand);
         return ok(Json.toJson(apiResult));
     }
 

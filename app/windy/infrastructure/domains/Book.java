@@ -2,7 +2,7 @@ package windy.infrastructure.domains;
 
 import windy.framework.contracts.IDomain;
 
-public class Book extends Domain{
+public class Book extends IDomain{
     String title;
     String author;
     long publishedDate;

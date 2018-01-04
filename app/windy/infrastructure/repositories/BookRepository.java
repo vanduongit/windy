@@ -11,11 +11,10 @@ import java.util.List;
 @Singleton
 public class BookRepository extends BaseRepository<Book>{
 
-
-
     public BookRepository() {
         super(Book.class);
         Book book1 = new Book();
+        book1.setUuid("234");
         book1.setTitle("book1");
         book1.setAuthor("duong1");
         book1.setCreatedAt(System.currentTimeMillis());

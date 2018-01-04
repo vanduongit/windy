@@ -1,15 +1,10 @@
 package windy.infrastructure.contracts.commands.book;
 
-import windy.infrastructure.contracts.commands.Command;
-import windy.infrastructure.domains.Book;
-import windy.infrastructure.repositories.BookRepository;
+import windy.framework.contracts.ICommand;
 
-public class BookCommand extends Command{
+public abstract class BookCommand extends ICommand{
 
-    protected BookRepository bookRepository;
-
-
-    public void setBookRepository(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public BookCommand(String uuid) {
+        super(uuid);
     }
 }

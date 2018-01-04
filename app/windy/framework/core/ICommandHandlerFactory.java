@@ -4,5 +4,5 @@ import windy.framework.contracts.ICommand;
 
 public interface ICommandHandlerFactory {
 
-    <T extends ICommand> ICommandHandler<T> createCommandHandler(Class<T> clazz);
+    <T extends ICommand> ICommandHandler<T> createCommandHandler(T command);
 }

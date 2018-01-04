@@ -6,18 +6,16 @@ import windy.infrastructure.repositories.BookRepository;
 
 import javax.inject.Inject;
 
-public class BookCommandHandler<T extends BookCommand> implements ICommandHandler<T>{
+public abstract class BookCommandHandler<T extends BookCommand> implements ICommandHandler<T>{
 
     private BookRepository bookRepository;
 
     @Inject
-    BookCommandHandler(BookRepository bookRepository){
+    protected BookCommandHandler(BookRepository bookRepository){
         this.bookRepository = bookRepository;
     }
 
-    @Override
-    public void handle(T command) {
-        command.setBookRepository(bookRepository);
-        command.execute();
+    public BookRepository getBookRepository() {
+        return bookRepository;
     }
 }

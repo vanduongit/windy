@@ -4,15 +4,20 @@ import windy.infrastructure.domains.Book;
 
 public class CreateBookCommand extends BookCommand{
 
-    private Book book;
+    private String title;
+    private String author;
 
-    public CreateBookCommand(Book book){
-        this.book = book;
+    public CreateBookCommand(String uuid, String title, String author) {
+        super(uuid);
+        this.title = title;
+        this.author = author;
     }
 
-    @Override
-    public void execute() {
-        this.bookRepository.create(book);
+    public String getTitle() {
+        return title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
 }
