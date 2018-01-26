@@ -2,13 +2,13 @@ package windy.infrastructure.contracts.events.book;
 
 import windy.infrastructure.contracts.events.Event;
 
-public class UpdateBookEvent extends Event{
+public class UpdatedGeneralInfoBookEvent extends Event{
 
     private String title;
     private String author;
     private long publishedDate;
 
-    public UpdateBookEvent(String sourceId, int version, String title, String author, long publishedDate) {
+    public UpdatedGeneralInfoBookEvent(String sourceId, int version, String title, String author, long publishedDate) {
         super(sourceId, version);
         this.title = title;
         this.author = author;

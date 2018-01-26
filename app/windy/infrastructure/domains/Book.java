@@ -1,8 +1,9 @@
 package windy.infrastructure.domains;
 
 import windy.framework.core.domain.BaseAggregateRoot;
-import windy.infrastructure.contracts.events.book.CreateBookEvent;
-import windy.infrastructure.contracts.events.book.UpdateBookEvent;
+import windy.infrastructure.contracts.events.book.CreatedBookEvent;
+import windy.infrastructure.contracts.events.book.DeletedBookEvent;
+import windy.infrastructure.contracts.events.book.UpdatedGeneralInfoBookEvent;
 
 public class Book extends BaseAggregateRoot{
     String title;
@@ -45,16 +46,20 @@ public class Book extends BaseAggregateRoot{
         this.publishedDate = publishedDate;
     }
 
-    private void apply(CreateBookEvent createBookEvent){
-        this.uuid = createBookEvent.getUuid();
-        this.title = createBookEvent.getTitle();
-        this.author = createBookEvent.getTitle();
+    private void apply(CreatedBookEvent createdBookEvent){
+        this.uuid = createdBookEvent.getUuid();
+        this.title = createdBookEvent.getTitle();
+        this.author = createdBookEvent.getTitle();
         this.publishedDate = System.currentTimeMillis();
         this.isActive = true;
         this.count = 1;
     }
 
-    private void apply(UpdateBookEvent updateBookEvent){
-        updateGeneralInfo(updateBookEvent.getTitle(),updateBookEvent.getAuthor(),updateBookEvent.getPublishedDate());
+    private void apply(UpdatedGeneralInfoBookEvent updatedGeneralInfoBookEvent){
+        updateGeneralInfo(updatedGeneralInfoBookEvent.getTitle(), updatedGeneralInfoBookEvent.getAuthor(), updatedGeneralInfoBookEvent.getPublishedDate());
+    }
+
+    private void apply(DeletedBookEvent deletedBookEvent){
+
     }
 }

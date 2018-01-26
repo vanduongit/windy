@@ -4,9 +4,8 @@ import windy.framework.infrastructure.eventsource.DomainRepository;
 import windy.framework.infrastructure.eventsource.EventStorage;
 import windy.infrastructure.commandhandlers.BookCommandHandler;
 import windy.infrastructure.contracts.commands.book.UpdateBookCommand;
-import windy.infrastructure.contracts.events.book.UpdateBookEvent;
+import windy.infrastructure.contracts.events.book.UpdatedGeneralInfoBookEvent;
 import windy.infrastructure.domains.Book;
-import windy.infrastructure.repositories.BookRepository;
 
 import javax.inject.Inject;
 
@@ -25,12 +24,12 @@ public class UpdateBookCommandHandler extends BookCommandHandler<UpdateBookComma
         Book book = new Book();
         book.loadFromHistory(getEventStorage().getAllEvents(command.getUuid()));
 
-        UpdateBookEvent updateBookEvent = new UpdateBookEvent(command.getUuid(),
+        UpdatedGeneralInfoBookEvent updatedGeneralInfoBookEvent = new UpdatedGeneralInfoBookEvent(command.getUuid(),
                 book.getVersion()+1,
                 command.getTitle(),
                 command.getAuthor(),
                 command.getPublishedDate());
-        book.applyNewEvent(updateBookEvent);
+        book.applyNewEvent(updatedGeneralInfoBookEvent);
         getDomainRepository().save(book);
 
 
