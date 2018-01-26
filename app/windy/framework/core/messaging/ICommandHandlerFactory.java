@@ -1,4 +1,4 @@
-package windy.framework.core;
+package windy.framework.core.messaging;
 
 import windy.framework.contracts.ICommand;
 

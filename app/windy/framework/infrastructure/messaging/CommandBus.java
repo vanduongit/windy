@@ -2,8 +2,8 @@ package windy.framework.infrastructure.messaging;
 
 
 import windy.framework.contracts.ICommand;
-import windy.framework.core.ICommandBus;
-import windy.framework.core.ICommandHandlerFactory;
+import windy.framework.core.messaging.ICommandBus;
+import windy.framework.core.messaging.ICommandHandlerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

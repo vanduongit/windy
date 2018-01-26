@@ -1,8 +1,10 @@
 package windy.infrastructure.domains;
 
-import windy.framework.contracts.IDomain;
+import windy.framework.core.domain.BaseAggregateRoot;
+import windy.infrastructure.contracts.events.book.CreateBookEvent;
+import windy.infrastructure.contracts.events.book.UpdateBookEvent;
 
-public class Book extends IDomain{
+public class Book extends BaseAggregateRoot{
     String title;
     String author;
     long publishedDate;
@@ -17,53 +19,42 @@ public class Book extends IDomain{
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getAuthor() {
         return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public long getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(long publishedDate) {
-        this.publishedDate = publishedDate;
-    }
-
     public long getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(long createdAt) {
-        this.createdAt = createdAt;
     }
 
     public boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
     public int getCount() {
         return count;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public void updateGeneralInfo(String title, String author, long publishedDate){
+    private void updateGeneralInfo(String title, String author, long publishedDate){
         this.title = title;
         this.author = author;
         this.publishedDate = publishedDate;
+    }
+
+    private void apply(CreateBookEvent createBookEvent){
+        this.uuid = createBookEvent.getUuid();
+        this.title = createBookEvent.getTitle();
+        this.author = createBookEvent.getTitle();
+        this.publishedDate = System.currentTimeMillis();
+        this.isActive = true;
+        this.count = 1;
+    }
+
+    private void apply(UpdateBookEvent updateBookEvent){
+        updateGeneralInfo(updateBookEvent.getTitle(),updateBookEvent.getAuthor(),updateBookEvent.getPublishedDate());
     }
 }

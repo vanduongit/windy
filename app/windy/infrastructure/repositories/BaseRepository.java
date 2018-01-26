@@ -1,13 +1,13 @@
 package windy.infrastructure.repositories;
 
 import windy.framework.contracts.IDomain;
-import windy.framework.repository.IDomainRepository;
+import windy.framework.core.repository.IReadRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BaseRepository<T extends IDomain> implements IDomainRepository<T>{
+public class BaseRepository<T extends IDomain> implements IReadRepository<T> {
 
     Class<T> clazz;
     protected List<T> list;

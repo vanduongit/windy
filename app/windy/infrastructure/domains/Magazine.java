@@ -1,6 +1,7 @@
 package windy.infrastructure.domains;
 
 import windy.framework.contracts.IDomain;
+import windy.framework.core.domain.BaseAggregateRoot;
 
 public class Magazine extends IDomain{
 

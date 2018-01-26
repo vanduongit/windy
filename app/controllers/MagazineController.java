@@ -4,13 +4,10 @@ import controllers.result.ApiResult;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import windy.framework.core.ICommandBus;
+import windy.framework.core.messaging.ICommandBus;
 import windy.framework.infrastructure.messaging.CommandBus;
 
-import windy.infrastructure.contracts.commands.magazine.CreateMagazineCommand;
-
 import windy.infrastructure.contracts.commands.magazine.DeleteMagazineCommand;
-import windy.infrastructure.contracts.commands.magazine.UpdateMagazineCommand;
 import windy.infrastructure.domains.Magazine;
 import windy.infrastructure.repositories.MagazineRepository;
 

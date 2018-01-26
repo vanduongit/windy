@@ -21,5 +21,7 @@ POST          /api/windy/magazines              controllers.MagazineController.c
 PUT           /api/windy/magazines              controllers.MagazineController.update
 DELETE        /api/windy/magazines/:uuid        controllers.MagazineController.delete(uuid)
 
+GET           /api/windy/eventstorage/get       controllers.EventStorageController.list()
+
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                     controllers.Assets.versioned(path="/public", file: Asset)

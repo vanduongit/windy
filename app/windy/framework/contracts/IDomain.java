@@ -1,9 +1,7 @@
 package windy.framework.contracts;
 
-import java.util.UUID;
-
 public abstract class IDomain{
-    protected String uuid;
+    private String uuid;
 
     public String getUuid() {
         return uuid;

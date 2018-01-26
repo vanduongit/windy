@@ -12,8 +12,11 @@ import com.google.inject.name.Names;
 import services.ApplicationTimer;
 import services.AtomicCounter;
 import services.Counter;
-import windy.framework.core.ICommandHandler;
-import windy.framework.core.ICommandHandlerFactory;
+import windy.framework.core.eventsource.IEventSource;
+import windy.framework.core.eventsource.IEventStorage;
+import windy.framework.core.messaging.ICommandHandler;
+import windy.framework.core.messaging.ICommandHandlerFactory;
+import windy.framework.infrastructure.eventsource.EventStorage;
 import windy.framework.infrastructure.messaging.CommandHandlerFactory;
 
 /**
@@ -39,6 +42,8 @@ public class Module extends AbstractModule {
         bind(Counter.class).to(AtomicCounter.class);
 
         bind(ICommandHandlerFactory.class).to(CommandHandlerFactory.class);
+
+        bind(IEventStorage.class).to(EventStorage.class);
 
         //bind(new TypeLiteral<ICommandHandler<CreateBookCommand>>(){}).to(CreateBookCommandHandler.class);
         try {
